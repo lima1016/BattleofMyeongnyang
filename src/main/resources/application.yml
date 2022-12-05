@@ -1,15 +1,15 @@
 # Redis
-spring:
-  data:
-    redis:
-      host: localhost
-      port: 6379
+#spring:
+#  data:
+#    redis:
+#      host: localhost
+#      port: 6379
 # Datasource
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/mdb
-    username: lima
-    password: 1111
+datasource:
+  driver-class-name: org.postgresql.Driver
+  url: jdbc:postgresql://localhost:5432/limardb
+  username: lima
+  password: 1111
 # JPA
 jpa:
   hibernate:
@@ -19,3 +19,16 @@ jpa:
   database-platform: org.hibernate.dialect.PostgreSQLDialect
   open-in-view: false
   generate-ddl: true
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        hbm2ddl:
+          auto: update
+server:
+  port: 8090

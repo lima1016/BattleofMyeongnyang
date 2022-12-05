@@ -1,21 +1,18 @@
 package com.lima.battleofmyeongnyang.domains.user.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.redis.core.RedisHash;
+import lombok.*;
 
 @Data
-@RedisHash(value = "user", timeToLive = 30)
+@Builder
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name = "user")
-public class UserDto {
+@NoArgsConstructor
+@Entity(name = "member")
+public class Member {
 
   /**
    * @Id: 기본키(PK)로 지정한다
@@ -25,9 +22,10 @@ public class UserDto {
    */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @JsonProperty("user_no")
   private Long userNo;
 
   private String email;
   private String name;
-  private String pw;
+  private String password;
 }
