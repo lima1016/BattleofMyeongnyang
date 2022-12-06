@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.ValueOperations;
 @SpringBootTest
 public class RedisTest {
 
+    // redis check
     @Resource
     StringRedisTemplate stringRedisTemplate;
     @Test
