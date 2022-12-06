@@ -24,7 +24,6 @@ public class Member {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @JsonProperty("user_no")
   private Long userNo;
-
   private String email;
   private String name;
   private String password;
