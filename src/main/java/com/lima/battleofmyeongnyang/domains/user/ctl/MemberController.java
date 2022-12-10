@@ -1,5 +1,6 @@
 package com.lima.battleofmyeongnyang.domains.user.ctl;
 
+import com.lima.battleofmyeongnyang.config.BeansUtils;
 import com.lima.battleofmyeongnyang.domains.user.MemberService;
 import com.lima.battleofmyeongnyang.domains.user.dto.Member;
 import jakarta.annotation.Resource;
@@ -28,5 +29,7 @@ public class MemberController {
   }
 
   @GetMapping("/read")
-  public void readUser() {}
+  public void readUser() {
+
+  }
 }
