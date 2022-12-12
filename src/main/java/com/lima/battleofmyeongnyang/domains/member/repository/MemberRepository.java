@@ -1,6 +1,6 @@
-package com.lima.battleofmyeongnyang.domains.user.repository;
+package com.lima.battleofmyeongnyang.domains.member.repository;
 
-import com.lima.battleofmyeongnyang.domains.user.dto.Member;
+import com.lima.battleofmyeongnyang.domains.member.dto.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

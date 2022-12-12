@@ -1,4 +1,4 @@
-package com.lima.battleofmyeongnyang.domains.user.dto;
+package com.lima.battleofmyeongnyang.domains.member.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;

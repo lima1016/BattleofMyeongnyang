@@ -16,11 +16,14 @@ public class AspectConfig {
     long start = 0;
     try {
       start = System.currentTimeMillis();
+      log.info("[AOP] START");
       Object result = joinPoint.proceed(joinPoint.getArgs());
       return result;
     } finally {
       long stop = System.currentTimeMillis();
-      log.info("[{}]:{}", joinPoint.getSignature(), stop-start);
+      String className = joinPoint.getSignature().getDeclaringType().getSimpleName();
+      String methodName = joinPoint.getSignature().getName();
+      log.info("[{}.{}:{}]-{}", className, methodName, stop-start, joinPoint.getArgs());
     }
   }
 }
