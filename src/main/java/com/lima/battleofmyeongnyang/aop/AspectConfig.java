@@ -16,7 +16,6 @@ public class AspectConfig {
     long start = 0;
     try {
       start = System.currentTimeMillis();
-      log.info("[AOP] START");
       Object result = joinPoint.proceed(joinPoint.getArgs());
       return result;
     } finally {

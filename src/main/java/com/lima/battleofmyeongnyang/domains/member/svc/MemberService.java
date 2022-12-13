@@ -17,4 +17,8 @@ public class MemberService {
   public void readMember() {
 
   }
+
+  public void deleteMember(long userNo) {
+    memberRepository.deleteMemberByUserNo(userNo);
+  }
 }
