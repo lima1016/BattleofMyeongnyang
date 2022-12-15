@@ -13,8 +13,11 @@ public class ResponseConfig {
 
   private String code = "HELLO-00000";
   private String msg = "SUCCESS";
-  private String response = "";
+  private Object response = "";
 
+  public ResponseConfig getResponse(Object response) {
+    return this.response = response;
+  }
   public static ResponseConfig isHelloEmpty() {
     return new ResponseConfig();
   }

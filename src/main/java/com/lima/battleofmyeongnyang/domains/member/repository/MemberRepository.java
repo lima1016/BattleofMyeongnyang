@@ -15,4 +15,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
   // LIM: 어노테이션 알아보기
   @Transactional
   void deleteMemberByUserNo(long userNo);
+
+  Member readMemberByUserNo(long userNo);
 }
