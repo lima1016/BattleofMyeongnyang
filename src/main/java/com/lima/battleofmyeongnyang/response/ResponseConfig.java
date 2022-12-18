@@ -16,7 +16,8 @@ public class ResponseConfig {
   private Object response = "";
 
   public ResponseConfig getResponse(Object response) {
-    return this.response = response;
+    // 다시보기
+    return (ResponseConfig) (this.response = response);
   }
   public static ResponseConfig isHelloEmpty() {
     return new ResponseConfig();
