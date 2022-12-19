@@ -6,6 +6,8 @@ import com.lima.battleofmyeongnyang.domains.member.dto.Member;
 import com.lima.battleofmyeongnyang.response.ResponseConfig;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.cache.RedisCache;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
   @Resource
   MemberService memberService;
+
+  RedisCache redisCache;
 
   /**
    * Member 회원 가입
@@ -47,5 +51,11 @@ public class MemberController {
   public ResponseConfig deleteMember(long memberNo) {
     memberService.deleteMember(memberNo);
     return new ResponseConfig();
+  }
+
+  @PostMapping
+  public ResponseConfig loginMember() {
+    // redis 뭐해야하는데 좀더 찾아봐야할듯
+    return null;
   }
 }
