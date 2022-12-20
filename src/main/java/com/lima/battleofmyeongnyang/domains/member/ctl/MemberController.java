@@ -19,7 +19,8 @@ public class MemberController {
   @Resource
   MemberService memberService;
 
-  RedisCache redisCache;
+  @Resource
+  RedisTemplate redisTemplate;
 
   /**
    * Member 회원 가입
@@ -39,7 +40,9 @@ public class MemberController {
   @GetMapping("/read/my-info")
   public ResponseConfig findByMemberId(long userNo) {
     // user가 로그인 했을때만 정보를 1번 불러오고 redis 에서 user 정보 갖고있다가 변경사항이 있을때 다시 redis로 정보 로드
-    return new ResponseConfig().getResponse(memberService.readMemberByUserNo(userNo));
+    Member member = memberService.readMemberByUserNo(userNo);
+    redisTemplate.opsForValue().set(userNo, member);
+    return new ResponseConfig().getResponse(member);
   }
 
   /**
