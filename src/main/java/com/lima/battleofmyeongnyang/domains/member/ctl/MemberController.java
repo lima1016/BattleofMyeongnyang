@@ -40,9 +40,7 @@ public class MemberController {
   @GetMapping("/read/my-info")
   public ResponseConfig findByMemberId(long userNo) {
     // user가 로그인 했을때만 정보를 1번 불러오고 redis 에서 user 정보 갖고있다가 변경사항이 있을때 다시 redis로 정보 로드
-    Member member = memberService.readMemberByUserNo(userNo);
-    redisTemplate.opsForValue().set(userNo, member);
-    return new ResponseConfig().getResponse(member);
+    return new ResponseConfig().getResponse(memberService.readMemberByUserNo(userNo));
   }
 
   /**
@@ -56,8 +54,10 @@ public class MemberController {
     return new ResponseConfig();
   }
 
-  @PostMapping
-  public ResponseConfig loginMember() {
+  @PostMapping("/login/member")
+  public ResponseConfig loginMember(@RequestBody String email, String password) {
+    Member member = memberService.readMemberByUserNo(userNo);
+    redisTemplate.opsForValue().set(userNo, member);
     // redis 뭐해야하는데 좀더 찾아봐야할듯
     return null;
   }

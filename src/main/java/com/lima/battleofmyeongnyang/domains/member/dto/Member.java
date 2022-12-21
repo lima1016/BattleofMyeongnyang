@@ -26,5 +26,6 @@ public class Member {
   private Long userNo;
   private String email;
   private String name;
+  // password 암호화 해야함
   private String password;
 }

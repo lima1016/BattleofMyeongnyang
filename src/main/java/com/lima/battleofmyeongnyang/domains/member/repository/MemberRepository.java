@@ -17,4 +17,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
   void deleteMemberByUserNo(long userNo);
 
   Member readMemberByUserNo(long userNo);
+
+  // 고민중
+  void readMemberByEmailAndPassword();
+  void searchMemberByEmailAndPassword();
 }

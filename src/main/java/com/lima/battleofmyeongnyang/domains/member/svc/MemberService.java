@@ -18,6 +18,10 @@ public class MemberService {
     return memberRepository.readMemberByUserNo(userNo);
   }
 
+  public void checkLoginMember(String email, String password) {
+    memberRepository.
+}
+
   public void deleteMember(long userNo) {
     memberRepository.deleteMemberByUserNo(userNo);
   }
