@@ -19,7 +19,6 @@ public class MemberService {
   }
 
   public void checkLoginMember(String email, String password) {
-    memberRepository.
 }
 
   public void deleteMember(long userNo) {
