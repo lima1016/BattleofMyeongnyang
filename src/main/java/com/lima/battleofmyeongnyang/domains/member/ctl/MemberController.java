@@ -56,8 +56,9 @@ public class MemberController {
 
   @PostMapping("/login/member")
   public ResponseConfig loginMember(@RequestBody String email, String password) {
-    Member member = memberService.readMemberByUserNo(userNo);
-    redisTemplate.opsForValue().set(userNo, member);
+    Member member = memberService.checkLoginMember(email, password);
+    // key: userNo, value: member
+    redisTemplate.opsForValue().set(member.getUserNo(), member);
     // redis 뭐해야하는데 좀더 찾아봐야할듯
     return null;
   }

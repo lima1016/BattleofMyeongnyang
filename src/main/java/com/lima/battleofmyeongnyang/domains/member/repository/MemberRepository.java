@@ -20,5 +20,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
   // 고민중
   void readMemberByEmailAndPassword();
-  void searchMemberByEmailAndPassword();
+  Member searchMemberByEmailAndPassword(String email, String password);
 }
