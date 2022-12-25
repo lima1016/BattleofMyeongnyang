@@ -58,6 +58,7 @@ public class MemberController {
   @PostMapping("/login/member")
   public ResponseConfig loginMember(@RequestBody String email, String password) {
     Member member = memberService.checkLoginMember(email, password);
+    // 로그인시 어떤 젇보를 redis에서 갖고있을지 정책 정하기
     // key: userNo, value: member
     redisTemplate.opsForValue().set(member.getUserNo(), member);
     // redis 뭐해야하는데 좀더 찾아봐야할듯
