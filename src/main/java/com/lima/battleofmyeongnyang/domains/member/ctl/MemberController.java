@@ -1,12 +1,10 @@
 package com.lima.battleofmyeongnyang.domains.member.ctl;
 
-import com.lima.battleofmyeongnyang.config.RedisConfig;
-import com.lima.battleofmyeongnyang.domains.member.svc.MemberService;
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
+import com.lima.battleofmyeongnyang.domains.member.svc.MemberService;
 import com.lima.battleofmyeongnyang.response.ResponseConfig;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.cache.RedisCache;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
