@@ -21,7 +21,6 @@ public class ResponseConfig {
     return (ResponseConfig) (this.response = response);
   }
 
-  // LIM: 으아아아아 Json 형식이였으면좋겠어~!!
   public Map getSuccessCode() {
     Map<String, Object> resultMap = new HashMap<>();
     resultMap.put(code, getCode());
