@@ -15,6 +15,8 @@ public class ConsoleInterceptor implements HandlerInterceptor {
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     String authorization = request.getHeader("Authorization");
     // LIM: 권한 체크하기 유저 정보 Redis에 넣어놔야하는데 언제 넣지~? Interceptor 에서는 어떤 역할을 하는지 알아보기
+    // Interceptor에서 체크 해야할 것
+    // 1. 관리자 인지 일반 유저인지
     request.getAuthType();
     for (Cookie cookie : request.getCookies()) {
         cookie.getDomain();
