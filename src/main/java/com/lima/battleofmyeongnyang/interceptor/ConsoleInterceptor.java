@@ -18,6 +18,7 @@ public class ConsoleInterceptor implements HandlerInterceptor {
     // Interceptor에서 체크 해야할 것
     // 1. 관리자 인지 일반 유저인지
     request.getAuthType();
+    System.out.println(request.getSession());
     for (Cookie cookie : request.getCookies()) {
         cookie.getDomain();
     }
