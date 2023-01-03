@@ -25,7 +25,6 @@ public class ResponseConfig {
     Map<String, Object> resultMap = new HashMap<>();
     resultMap.put(code, getCode());
     resultMap.put(msg, getMsg());
-    System.out.println("어케 나오나");
     System.out.println(resultMap);
     return  resultMap;
   }
