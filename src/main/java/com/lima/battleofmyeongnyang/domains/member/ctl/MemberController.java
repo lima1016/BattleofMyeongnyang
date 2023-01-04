@@ -48,7 +48,6 @@ public class MemberController {
    */
   @GetMapping("/delete")
   public ResponseConfig deleteMember(long memberNo) {
-    // LIM: 사용자 탈퇴시 정보를 갖고있을지 정책 정하기
     memberService.deleteMember(memberNo);
     return ResponseConfig.isHelloEmpty();
   }
