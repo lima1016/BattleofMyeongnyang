@@ -58,7 +58,6 @@ public class MemberController {
     Member member = memberService.checkLoginMember(email, password);
     // LIM: 로그인시 어떤 젇보를 redis에서 갖고있을지 정책 정하기
     redisTemplate.opsForValue().set(member.getUserNo(), member);
-    // redis 뭐해야하는데 좀더 찾아봐야할듯
     return null;
   }
 }
