@@ -1,6 +1,7 @@
 package com.lima.battleofmyeongnyang.response;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class ResponseConfig {
 
   private String code = "HELLO-00000";
@@ -29,6 +31,6 @@ public class ResponseConfig {
     return  resultMap;
   }
   public static ResponseConfig isHelloEmpty() {
-    return new ResponseConfig();
+    return ResponseConfig.builder().code("HELLO-0000").msg("SUCCESS").build();
   }
 }
