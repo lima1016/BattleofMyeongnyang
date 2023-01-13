@@ -57,7 +57,6 @@ public class MemberController {
   public ResponseConfig loginMember(@RequestBody String email, String password) {
     Member member = memberService.checkLoginMember(email, password);
     // LIM: 로그인시 어떤 젇보를 redis에서 갖고있을지 정책 정하기
-    // 아.. 약간 번아웃 온듯.... 너모 힘들다
     // key: userNo, value: member
     redisTemplate.opsForValue().set(member.getUserNo(), member);
     // redis 뭐해야하는데 좀더 찾아봐야할듯
