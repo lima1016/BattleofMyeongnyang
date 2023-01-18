@@ -13,6 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class ConsoleInterceptor implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    log.info("ConsoleInterceptor.preHandle().handler : " + handler);
+    log.info("ConsoleInterceptor.preHandle().request : " + request);
+    log.info("ConsoleInterceptor.preHandle().response : " + response);
+    
     String authorization = request.getHeader("Authorization");
     // LIM: 권한 체크하기 유저 정보 Redis에 넣어놔야하는데 언제 넣지~? Interceptor 에서는 어떤 역할을 하는지 알아보기
     // Interceptor에서 체크 해야할 것
