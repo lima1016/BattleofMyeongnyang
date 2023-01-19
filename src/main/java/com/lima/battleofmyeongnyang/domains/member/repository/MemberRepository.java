@@ -1,6 +1,7 @@
 package com.lima.battleofmyeongnyang.domains.member.repository;
 
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
+import com.lima.battleofmyeongnyang.domains.member.dto.ResponseMemberDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,5 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
   Member readMemberByUserNo(long userNo);
 
-  // 고민중
-  void readMemberByEmailAndPassword();
   Member searchMemberByEmailAndPassword(String email, String password);
 }

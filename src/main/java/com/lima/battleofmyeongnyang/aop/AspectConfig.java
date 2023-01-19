@@ -22,7 +22,7 @@ public class AspectConfig {
       long stop = System.currentTimeMillis();
       String className = joinPoint.getSignature().getDeclaringType().getSimpleName();
       String methodName = joinPoint.getSignature().getName();
-      log.info("[{}.{}:{}]-{}", className, methodName, stop-start, joinPoint.getArgs());
+      log.info("[AOP}[{}.{}:{}]-{}", className, methodName, stop-start, joinPoint.getArgs());
     }
   }
 }

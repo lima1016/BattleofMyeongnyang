@@ -1,6 +1,8 @@
 package com.lima.battleofmyeongnyang.domains.member.ctl;
 
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
+import com.lima.battleofmyeongnyang.domains.member.dto.RequestLoginMemberDto;
+import com.lima.battleofmyeongnyang.domains.member.dto.ResponseMemberDto;
 import com.lima.battleofmyeongnyang.domains.member.svc.MemberService;
 import com.lima.battleofmyeongnyang.response.ResponseConfig;
 import jakarta.annotation.Resource;
@@ -54,8 +56,11 @@ public class MemberController {
   }
 
   @PostMapping("/login/member")
-  public ResponseConfig loginMember(@RequestBody String email, String password) {
-    Member member = memberService.checkLoginMember(email, password);
+  public ResponseConfig loginMember(@RequestBody RequestLoginMemberDto request) {
+    log.info("MemberController.loginMember.request :" + request);
+    Member member = memberService.checkLoginMember(request.getEmail(), request.getPassword());
+
+    log.info("member >>>>>>>>>>>>>>>>>>>>> "+ member);
     // LIM: 로그인시 어떤 젇보를 redis에서 갖고있을지 정책 정하기
     // key: userNo, value: member
     redisTemplate.opsForValue().set(member.getUserNo(), member);

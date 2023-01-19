@@ -10,12 +10,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "member")
-public class Member {
+public class Member implements Serializable {
+
 
   /**
    * @Id: 기본키(PK)로 지정한다

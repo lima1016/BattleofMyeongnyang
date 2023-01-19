@@ -14,18 +14,18 @@ public class ConsoleInterceptor implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     log.info("ConsoleInterceptor.preHandle().handler : " + handler);
-    log.info("ConsoleInterceptor.preHandle().request : " + request);
-    log.info("ConsoleInterceptor.preHandle().response : " + response);
-    
-    String authorization = request.getHeader("Authorization");
+    log.info("ConsoleInterceptor.preHandle().request : " + request.getMethod());
+    log.info("ConsoleInterceptor.preHandle().response : " + response.getStatus());
+
+//    String authorization = request.getHeader("Authorization");
     // LIM: 권한 체크하기 유저 정보 Redis에 넣어놔야하는데 언제 넣지~? Interceptor 에서는 어떤 역할을 하는지 알아보기
     // Interceptor에서 체크 해야할 것
     // 1. 관리자 인지 일반 유저인지 근데 로그인할때 ID 판별해서 어드민 아이디인지 확인하려면 로그인할때는 interceptor 안타게 해야할듯
-    request.getAuthType();
-    System.out.println(request.getSession());
-    for (Cookie cookie : request.getCookies()) {
-        cookie.getDomain();
-    }
+//    request.getAuthType();
+//    System.out.println(request.getSession());
+//    for (Cookie cookie : request.getCookies()) {
+//        cookie.getDomain();
+//    }
     request.getSession().getId();
     return HandlerInterceptor.super.preHandle(request, response, handler);
   }
