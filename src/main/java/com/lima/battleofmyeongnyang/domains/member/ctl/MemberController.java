@@ -65,6 +65,10 @@ public class MemberController {
     // key: userNo, value: member
     redisTemplate.opsForValue().set(member.getUserNo(), member);
     // redis 뭐해야하는데 좀더 찾아봐야할듯
-    return null;
+
+//    System.out.println("redisTemplate.getExpire(member.getUserNo()) >>> " + redisTemplate.boundListOps(member.getUserNo()).getKey());
+//    System.out.println("redisTemplate >>> " + redisTemplate.boundSetOps(member.getUserNo()).members());
+    System.out.println(" >>> " + redisTemplate.boundValueOps(member.getUserNo()).get());
+    return ResponseConfig.isHelloEmpty();
   }
 }

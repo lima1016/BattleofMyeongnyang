@@ -30,7 +30,9 @@ public class ResponseConfig {
     System.out.println(resultMap);
     return  resultMap;
   }
+
+  // 응답쪽 수정해야함
   public static ResponseConfig isHelloEmpty() {
-    return ResponseConfig.builder().code("HELLO-0000").msg("SUCCESS").build();
+    return new ResponseConfig();
   }
 }
