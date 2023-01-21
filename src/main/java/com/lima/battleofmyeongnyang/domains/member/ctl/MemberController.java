@@ -7,6 +7,7 @@ import com.lima.battleofmyeongnyang.domains.member.svc.MemberService;
 import com.lima.battleofmyeongnyang.response.ResponseConfig;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.json.simple.JSONObject;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -38,9 +39,9 @@ public class MemberController {
    * @param userNo
    */
   @GetMapping("/read/my-info")
-  public ResponseConfig findByMemberId(long userNo) {
+  public JSONObject findByMemberId(long userNo) {
     // user가 로그인 했을때만 정보를 1번 불러오고 redis 에서 user 정보 갖고있다가 변경사항이 있을때 다시 redis로 정보 로드
-    return new ResponseConfig().getResponse(memberService.readMemberByUserNo(userNo));
+    return ResponseConfig.isHelloEmpty();
   }
 
   /**
@@ -49,14 +50,14 @@ public class MemberController {
    * @return
    */
   @GetMapping("/delete")
-  public ResponseConfig deleteMember(long memberNo) {
+  public JSONObject deleteMember(long memberNo) {
     // LIM: 사용자 탈퇴시 정보를 갖고있을지 정책 정하기
     memberService.deleteMember(memberNo);
     return ResponseConfig.isHelloEmpty();
   }
 
   @PostMapping("/login/member")
-  public ResponseConfig loginMember(@RequestBody RequestLoginMemberDto request) {
+  public JSONObject loginMember(@RequestBody RequestLoginMemberDto request) {
     log.info("MemberController.loginMember.request :" + request);
     Member member = memberService.checkLoginMember(request.getEmail(), request.getPassword());
 
