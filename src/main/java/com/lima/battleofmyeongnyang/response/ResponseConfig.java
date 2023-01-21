@@ -23,16 +23,9 @@ public class ResponseConfig {
     return (ResponseConfig) (this.response = response);
   }
 
-  public Map getSuccessCode() {
-    Map<String, Object> resultMap = new HashMap<>();
-    resultMap.put(code, getCode());
-    resultMap.put(msg, getMsg());
-    System.out.println(resultMap);
-    return  resultMap;
-  }
-
   // 응답쪽 수정해야함
   public static ResponseConfig isHelloEmpty() {
+    System.out.println("이이ㅣ이이이이ㅣ");
     return new ResponseConfig();
   }
 }
