@@ -59,10 +59,13 @@ public class MemberController {
   @PostMapping("/login/member")
   public JSONObject loginMember(@RequestBody RequestLoginMemberDto request) {
     log.info("MemberController.loginMember.request :" + request);
-    Member member = memberService.checkLoginMember(request.getEmail(), request.getPassword());
-
-    log.info("member >>>>>>>>>>>>>>>>>>>>> "+ member);
-    // LIM: 로그인시 어떤 젇보를 redis에서 갖고있을지 정책 정하기
+    Member member = null;
+    // 로그인 실패는 어떻게 체크를 할 것 인가?
+    try {
+      member = memberService.checkLoginMember(request.getEmail(), request.getPassword());
+    } catch (Exception e) {
+      log.error("", e);
+    }
     // key: userNo, value: member
     redisTemplate.opsForValue().set(member.getUserNo(), member);
     // redis 뭐해야하는데 좀더 찾아봐야할듯
