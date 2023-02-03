@@ -2,7 +2,6 @@ package com.lima.battleofmyeongnyang.domains.member.ctl;
 
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
 import com.lima.battleofmyeongnyang.domains.member.dto.RequestLoginMemberDto;
-import com.lima.battleofmyeongnyang.domains.member.dto.ResponseMemberDto;
 import com.lima.battleofmyeongnyang.domains.member.svc.MemberService;
 import com.lima.battleofmyeongnyang.response.ResponseConfig;
 import jakarta.annotation.Resource;
@@ -11,6 +10,8 @@ import org.json.simple.JSONObject;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
 
 @RestController
 @Slf4j
@@ -61,15 +62,14 @@ public class MemberController {
   @PostMapping("/login/member")
   public JSONObject loginMember(@RequestBody RequestLoginMemberDto request) {
     log.info("MemberController.loginMember.request :" + request);
+    // 로그인 실패는 어떻게 체크를 할 것 인가?
     Member member = memberService.checkLoginMember(request.getEmail(), request.getPassword());
-
-    log.info("member >>>>>>>>>>>>>>>>>>>>> "+ member);
-    // LIM: 로그인시 어떤 정보를 redis에서 갖고있을지 정책 정하기
-    // key: userNo, value: member
-    redisTemplate.opsForValue().set(member.getUserNo(), member);
-    // redis 뭐해야하는데 좀더 찾아봐야할듯
-
-    System.out.println(" >>> " + redisTemplate.boundValueOps(member.getUserNo()).get());
+    if ( Objects.nonNull(member)) {
+      // redis에 로그인한 user 정보 저장
+      redisTemplate.opsForValue().set(member.getUserNo(), member);
+    } else {
+      // 실패했을 경우 exception 던지기
+    }
     return ResponseConfig.isHelloEmpty();
   }
 }
