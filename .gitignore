@@ -22,3 +22,4 @@ package-lock.json
 *.ear
 hs_err_pid*
 out/
+src/geoip/GeoLite2-City.mmdb

@@ -41,6 +41,8 @@ public class MemberController {
   @GetMapping("/read/my-info")
   public JSONObject findByMemberId(long userNo) {
     // user가 로그인 했을때만 정보를 1번 불러오고 redis 에서 user 정보 갖고있다가 변경사항이 있을때 다시 redis로 정보 로드
+    // LIM: GEO IP로 어디서 접속했는지 확인 하고 로그인 기록 남기기 (유저가 볼수있음)
+
     return ResponseConfig.isHelloEmpty();
   }
 
@@ -62,7 +64,7 @@ public class MemberController {
     Member member = memberService.checkLoginMember(request.getEmail(), request.getPassword());
 
     log.info("member >>>>>>>>>>>>>>>>>>>>> "+ member);
-    // LIM: 로그인시 어떤 젇보를 redis에서 갖고있을지 정책 정하기
+    // LIM: 로그인시 어떤 정보를 redis에서 갖고있을지 정책 정하기
     // key: userNo, value: member
     redisTemplate.opsForValue().set(member.getUserNo(), member);
     // redis 뭐해야하는데 좀더 찾아봐야할듯
