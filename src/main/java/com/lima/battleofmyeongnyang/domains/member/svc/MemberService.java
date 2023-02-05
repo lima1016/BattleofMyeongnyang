@@ -26,4 +26,8 @@ public class MemberService {
   public void deleteMember(long userNo) {
     memberRepository.deleteMemberByUserNo(userNo);
   }
+
+  public void getLoginHistory(long userNo) {
+    // LIM: GEO IP로 어디서 접속했는지 확인 하고 로그인 기록 남기기 (유저가 볼수있음)
+  }
 }

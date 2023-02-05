@@ -1,4 +1,4 @@
-package com.lima.battleofmyeongnyang.config;
+package com.lima.battleofmyeongnyang.utility;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

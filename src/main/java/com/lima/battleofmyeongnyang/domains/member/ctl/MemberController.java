@@ -3,14 +3,21 @@ package com.lima.battleofmyeongnyang.domains.member.ctl;
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
 import com.lima.battleofmyeongnyang.domains.member.dto.RequestLoginMemberDto;
 import com.lima.battleofmyeongnyang.domains.member.svc.MemberService;
+import com.lima.battleofmyeongnyang.geoip.GeoEnum;
+import com.lima.battleofmyeongnyang.geoip.GeoIPUtility;
 import com.lima.battleofmyeongnyang.response.ResponseConfig;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
+import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.util.EnumMap;
 import java.util.Objects;
 
 @RestController
@@ -42,7 +49,9 @@ public class MemberController {
   @GetMapping("/read/my-info")
   public JSONObject findByMemberId(long userNo) {
     // user가 로그인 했을때만 정보를 1번 불러오고 redis 에서 user 정보 갖고있다가 변경사항이 있을때 다시 redis로 정보 로드
-    // LIM: GEO IP로 어디서 접속했는지 확인 하고 로그인 기록 남기기 (유저가 볼수있음)
+    // login history
+    memberService.getLoginHistory(userNo);
+    // 로그인한 유저 정보
 
     return ResponseConfig.isHelloEmpty();
   }
@@ -62,6 +71,11 @@ public class MemberController {
   @PostMapping("/login/member")
   public JSONObject loginMember(@RequestBody RequestLoginMemberDto request) {
     log.info("MemberController.loginMember.request :" + request);
+    // 로그인한 유저 IP 정보 가져오기
+    HttpServletRequest http = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+    // 로그인한 유저 국가 정보 가져와서 login history 남기기
+    EnumMap<GeoEnum, Object> geoIP = GeoIPUtility.getGeoIP(http.getRemoteAddr());
+
     // 로그인 실패는 어떻게 체크를 할 것 인가?
     Member member = memberService.checkLoginMember(request.getEmail(), request.getPassword());
     if ( Objects.nonNull(member)) {
