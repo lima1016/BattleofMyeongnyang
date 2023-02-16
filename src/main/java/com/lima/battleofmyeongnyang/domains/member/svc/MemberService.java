@@ -6,6 +6,8 @@ import com.lima.battleofmyeongnyang.domains.member.repository.MemberRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MemberService {
   @Resource
@@ -29,5 +31,9 @@ public class MemberService {
 
   public void getLoginHistory(long userNo) {
     // LIM: GEO IP로 어디서 접속했는지 확인 하고 로그인 기록 남기기 (유저가 볼수있음)
+  }
+
+  public List<Member> readMembers() {
+    return memberRepository.readMembersBy();
   }
 }

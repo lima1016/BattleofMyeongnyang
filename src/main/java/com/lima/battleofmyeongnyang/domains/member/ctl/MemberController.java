@@ -1,5 +1,6 @@
 package com.lima.battleofmyeongnyang.domains.member.ctl;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
 import com.lima.battleofmyeongnyang.domains.member.dto.RequestLoginMemberDto;
 import com.lima.battleofmyeongnyang.domains.member.svc.MemberService;
@@ -18,6 +19,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -40,6 +42,11 @@ public class MemberController {
   public ResponseConfig createMember(@RequestBody Member member) {
     memberService.createMember(member);
     return new ResponseConfig();
+  }
+
+  @GetMapping("/read/members")
+  public List<Member> readMembers() {
+    return memberService.readMembers();
   }
 
   /**
