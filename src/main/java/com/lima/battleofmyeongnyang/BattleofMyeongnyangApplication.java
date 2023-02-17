@@ -1,5 +1,6 @@
 package com.lima.battleofmyeongnyang;
 
+import com.lima.battleofmyeongnyang.setting.BattleApplicationListener;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,7 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BattleofMyeongnyangApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BattleofMyeongnyangApplication.class, args);
+        SpringApplication app = new SpringApplication(BattleofMyeongnyangApplication.class);
+        app.addListeners(new BattleApplicationListener());
+        app.run(args);
+
     }
 
 }
