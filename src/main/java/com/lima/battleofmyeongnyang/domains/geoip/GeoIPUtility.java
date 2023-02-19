@@ -1,4 +1,4 @@
-package com.lima.battleofmyeongnyang.geoip;
+package com.lima.battleofmyeongnyang.domains.geoip;
 
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.AddressNotFoundException;

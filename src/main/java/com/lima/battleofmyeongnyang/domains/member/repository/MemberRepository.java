@@ -1,5 +1,6 @@
 package com.lima.battleofmyeongnyang.domains.member.repository;
 
+import com.lima.battleofmyeongnyang.domains.geoip.MemberLoginHistoryDto;
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
 import com.lima.battleofmyeongnyang.domains.member.dto.ResponseMemberDto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,4 +24,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
   Member searchMemberByEmailAndPassword(String email, String password);
 
   List<Member> readMembersBy();
+
+  List<MemberLoginHistoryDto> getMemberLoginHistory();
 }

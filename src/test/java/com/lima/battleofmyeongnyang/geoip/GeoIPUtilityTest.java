@@ -1,5 +1,6 @@
 package com.lima.battleofmyeongnyang.geoip;
 
+import com.lima.battleofmyeongnyang.domains.geoip.GeoEnum;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import com.maxmind.geoip2.model.CityResponse;
@@ -14,8 +15,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.util.EnumMap;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class GeoIPUtilityTest {

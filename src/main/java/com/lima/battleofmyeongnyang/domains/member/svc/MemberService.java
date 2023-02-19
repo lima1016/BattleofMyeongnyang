@@ -1,5 +1,6 @@
 package com.lima.battleofmyeongnyang.domains.member.svc;
 
+import com.lima.battleofmyeongnyang.domains.geoip.MemberLoginHistoryDto;
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
 import com.lima.battleofmyeongnyang.domains.member.dto.ResponseMemberDto;
 import com.lima.battleofmyeongnyang.domains.member.repository.MemberRepository;
@@ -29,8 +30,9 @@ public class MemberService {
     memberRepository.deleteMemberByUserNo(userNo);
   }
 
-  public void getLoginHistory(long userNo) {
+  public List<MemberLoginHistoryDto> getLoginHistory(long userNo) {
     // LIM: GEO IP로 어디서 접속했는지 확인 하고 로그인 기록 남기기 (유저가 볼수있음)
+    return memberRepository.getMemberLoginHistory();
   }
 
   public List<Member> readMembers() {

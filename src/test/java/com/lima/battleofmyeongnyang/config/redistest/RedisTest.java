@@ -1,20 +1,10 @@
 package com.lima.battleofmyeongnyang.config.redistest;
 
-import com.lima.battleofmyeongnyang.geoip.GeoEnum;
-import com.maxmind.geoip2.DatabaseReader;
-import com.maxmind.geoip2.exception.GeoIp2Exception;
-import com.maxmind.geoip2.model.CityResponse;
 import jakarta.annotation.Resource;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.util.EnumMap;
 
 @SpringBootTest
 public class RedisTest {

@@ -16,7 +16,7 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "member")
+@Entity(name = "tb_battle_member")
 public class Member implements Serializable {
 
 

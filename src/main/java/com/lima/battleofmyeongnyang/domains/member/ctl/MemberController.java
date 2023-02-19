@@ -1,17 +1,16 @@
 package com.lima.battleofmyeongnyang.domains.member.ctl;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
 import com.lima.battleofmyeongnyang.domains.member.dto.RequestLoginMemberDto;
 import com.lima.battleofmyeongnyang.domains.member.svc.MemberService;
-import com.lima.battleofmyeongnyang.geoip.GeoEnum;
-import com.lima.battleofmyeongnyang.geoip.GeoIPUtility;
+import com.lima.battleofmyeongnyang.domains.geoip.GeoEnum;
+import com.lima.battleofmyeongnyang.domains.geoip.GeoIPUtility;
+import com.lima.battleofmyeongnyang.response.BattleJsonResponse;
 import com.lima.battleofmyeongnyang.response.ResponseConfig;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONObject;
-import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -54,13 +53,12 @@ public class MemberController {
    * @param userNo
    */
   @GetMapping("/read/my-info")
-  public JSONObject findByMemberId(long userNo) {
+  public BattleJsonResponse findByMemberId(long userNo) {
     // user가 로그인 했을때만 정보를 1번 불러오고 redis 에서 user 정보 갖고있다가 변경사항이 있을때 다시 redis로 정보 로드
     // login history
-    memberService.getLoginHistory(userNo);
     // 로그인한 유저 정보
 
-    return ResponseConfig.isHelloEmpty();
+    return ResponseConfig.getResponse(memberService.getLoginHistory(userNo));
   }
 
   /**
@@ -69,14 +67,14 @@ public class MemberController {
    * @return
    */
   @GetMapping("/delete")
-  public JSONObject deleteMember(long memberNo) {
+  public ResponseConfig deleteMember(long memberNo) {
     // LIM: 사용자 탈퇴시 정보를 갖고있을지 정책 정하기
     memberService.deleteMember(memberNo);
     return ResponseConfig.isHelloEmpty();
   }
 
   @PostMapping("/login/member")
-  public JSONObject loginMember(@RequestBody RequestLoginMemberDto request) {
+  public ResponseConfig loginMember(@RequestBody RequestLoginMemberDto request) {
     log.info("MemberController.loginMember.request :" + request);
     // 로그인한 유저 IP 정보 가져오기
     HttpServletRequest http = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();

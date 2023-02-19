@@ -1,4 +1,4 @@
-package com.lima.battleofmyeongnyang.geoip;
+package com.lima.battleofmyeongnyang.domains.geoip;
 
 public enum GeoEnum {
   COUNTRY_NAME
