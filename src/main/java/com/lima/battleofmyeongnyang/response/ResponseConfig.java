@@ -19,15 +19,10 @@ import java.util.Map;
 public class ResponseConfig {
 
   @JsonProperty("battle_code")
-  private String code = "HELLO-00000";
+  private String code = "BATTLE-00000";
 
   @JsonProperty("battle_msg")
   private String msg = "SUCCESS";
-
-  public static BattleJsonResponse getResponse(Object response) {
-
-    return BattleJsonResponse.getResponseDetail(response);
-  }
 
   // 응답쪽 수정해야함
   public static ResponseConfig isHelloEmpty() {

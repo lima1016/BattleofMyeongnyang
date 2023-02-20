@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "tb_battle_member")
@@ -29,7 +28,7 @@ public class Member implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @JsonProperty("user_no")
-  private Long userNo;
+  private long userNo;
   private String email;
   private String name;
   // password 암호화 해야함

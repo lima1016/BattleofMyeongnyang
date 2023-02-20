@@ -1,14 +1,11 @@
 package com.lima.battleofmyeongnyang.domains.member.repository;
 
-import com.lima.battleofmyeongnyang.domains.geoip.MemberLoginHistoryDto;
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
-import com.lima.battleofmyeongnyang.domains.member.dto.ResponseMemberDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {
@@ -25,5 +22,4 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
   List<Member> readMembersBy();
 
-  List<MemberLoginHistoryDto> getMemberLoginHistory();
 }

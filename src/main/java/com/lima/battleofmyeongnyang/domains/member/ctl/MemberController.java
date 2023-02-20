@@ -1,5 +1,7 @@
 package com.lima.battleofmyeongnyang.domains.member.ctl;
 
+import com.lima.battleofmyeongnyang.domains.history.service.LoginHistoryService;
+import com.lima.battleofmyeongnyang.domains.member.LoginMember;
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
 import com.lima.battleofmyeongnyang.domains.member.dto.RequestLoginMemberDto;
 import com.lima.battleofmyeongnyang.domains.member.svc.MemberService;
@@ -28,7 +30,6 @@ import java.util.Objects;
 public class MemberController {
   @Resource
   MemberService memberService;
-
   @Resource
   RedisTemplate redisTemplate;
 
@@ -44,8 +45,8 @@ public class MemberController {
   }
 
   @GetMapping("/read/members")
-  public List<Member> readMembers() {
-    return memberService.readMembers();
+  public BattleJsonResponse readMembers() {
+    return BattleJsonResponse.getResponse(memberService.readMembers());
   }
 
   /**
@@ -55,10 +56,7 @@ public class MemberController {
   @GetMapping("/read/my-info")
   public BattleJsonResponse findByMemberId(long userNo) {
     // user가 로그인 했을때만 정보를 1번 불러오고 redis 에서 user 정보 갖고있다가 변경사항이 있을때 다시 redis로 정보 로드
-    // login history
-    // 로그인한 유저 정보
-
-    return ResponseConfig.getResponse(memberService.getLoginHistory(userNo));
+    return BattleJsonResponse.getResponse(memberService.getMemberInfo(userNo));
   }
 
   /**
@@ -76,18 +74,17 @@ public class MemberController {
   @PostMapping("/login/member")
   public ResponseConfig loginMember(@RequestBody RequestLoginMemberDto request) {
     log.info("MemberController.loginMember.request :" + request);
-    // 로그인한 유저 IP 정보 가져오기
-    HttpServletRequest http = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-    // 로그인한 유저 국가 정보 가져와서 login history 남기기
-    EnumMap<GeoEnum, Object> geoIP = GeoIPUtility.getGeoIP(http.getRemoteAddr());
 
     // 로그인 실패는 어떻게 체크를 할 것 인가?
     Member member = memberService.checkLoginMember(request.getEmail(), request.getPassword());
     if ( Objects.nonNull(member)) {
       // redis에 로그인한 user 정보 저장
-      redisTemplate.opsForValue().set(member.getUserNo(), member);
+//      redisTemplate.opsForValue().set(member.getUserNo(), member);
+
+      memberService.createMemberHistory(member);
     } else {
       // 실패했을 경우 exception 던지기
+      throw new RuntimeException("아이디나 비밀번호가 틀렸습니다.");
     }
     return ResponseConfig.isHelloEmpty();
   }
