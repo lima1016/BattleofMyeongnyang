@@ -1,5 +1,7 @@
 package com.lima.battleofmyeongnyang.interceptor;
 
+import com.lima.battleofmyeongnyang.domains.member.LoginMember;
+import io.hypersistence.utils.hibernate.type.basic.Inet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -7,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Objects;
 
 @Slf4j
 @Component
@@ -17,15 +21,12 @@ public class ConsoleInterceptor implements HandlerInterceptor {
     log.info("ConsoleInterceptor.preHandle().request : " + request.getMethod());
     log.info("ConsoleInterceptor.preHandle().response : " + response.getStatus());
 
-//    String authorization = request.getHeader("Authorization");
+    // login user ip 정보 저장
+    if (Objects.nonNull(request.getRemoteAddr())) {
+      LoginMember.getInstance().setLoginIp(new Inet(request.getRemoteAddr()));
+    }
+
     // LIM: 권한 체크하기 유저 정보 Redis에 넣어놔야하는데 언제 넣지~? Interceptor 에서는 어떤 역할을 하는지 알아보기
-    // Interceptor에서 체크 해야할 것
-    // 1. 관리자 인지 일반 유저인지 근데 로그인할때 ID 판별해서 어드민 아이디인지 확인하려면 로그인할때는 interceptor 안타게 해야할듯
-//    request.getAuthType();
-//    System.out.println(request.getSession());
-//    for (Cookie cookie : request.getCookies()) {
-//        cookie.getDomain();
-//    }
     request.getSession().getId();
     return HandlerInterceptor.super.preHandle(request, response, handler);
   }
