@@ -80,7 +80,7 @@ public class MemberController {
     Member member = memberService.checkLoginMember(request.getEmail(), request.getPassword());
     if ( Objects.nonNull(member)) {
       // redis에 로그인한 user 정보 저장
-//      redisTemplate.opsForValue().set(member.getUserNo(), member);
+      redisTemplate.opsForValue().set(member.getUserNo(), member);
 
       memberService.createMemberHistory(member);
     } else {
