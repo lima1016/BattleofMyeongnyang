@@ -80,9 +80,8 @@ public class MemberController {
     Member member = memberService.checkLoginMember(request.getEmail(), request.getPassword());
     if ( Objects.nonNull(member)) {
       // redis에 로그인한 user 정보 저장
-      redisTemplate.opsForValue().set(member.getUserNo(), member);
-
       memberService.createMemberHistory(member);
+      redisTemplate.opsForValue().set(member.getUserNo(), member);
     } else {
       // 실패했을 경우 exception 던지기
       throw new RuntimeException("아이디나 비밀번호가 틀렸습니다.");
