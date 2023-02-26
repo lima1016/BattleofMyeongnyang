@@ -1,5 +1,15 @@
 package com.lima.battleofmyeongnyang.Exception;
 
-public class BattleException extends Exception{
-  // exception 처리 어케할꺼냥
+import lombok.Getter;
+
+public enum BattleException {
+
+  NO_PERMISSION("don't have permission");
+
+  @Getter
+  private String message;
+
+  BattleException(String message) {
+    this.message = message;
+  }
 }
