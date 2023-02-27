@@ -33,6 +33,7 @@ public class MemberController {
   @Resource
   RedisTemplate redisTemplate;
 
+
   /**
    * Member 회원 가입
    * @param member
@@ -79,9 +80,10 @@ public class MemberController {
     // 로그인 실패는 어떻게 체크를 할 것 인가?
     Member member = memberService.checkLoginMember(request.getEmail(), request.getPassword());
     if ( Objects.nonNull(member)) {
-      // redis에 로그인한 user 정보 저장
+      // 로그인한 user 정보 저장 세션, 쿠키, 캐시?
       memberService.createMemberHistory(member);
-      redisTemplate.opsForValue().set(member.getUserNo(), member);
+
+//      redisTemplate.opsForValue().set(member.getUserNo(), member);
     } else {
       // 실패했을 경우 exception 던지기
       throw new RuntimeException("아이디나 비밀번호가 틀렸습니다.");
