@@ -9,7 +9,6 @@ import io.hypersistence.utils.hibernate.type.basic.Inet;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import java.net.InetAddress;
 import java.util.EnumMap;
 import java.util.List;
 
