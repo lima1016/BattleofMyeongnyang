@@ -12,6 +12,11 @@ public class BattleofMyeongnyangApplication {
         app.addListeners(new BattleApplicationListener());
         app.run(args);
         // 서버 살아있는지 체크 하는거 알아보기
+        monitoringService();
+    }
+
+    private static void monitoringService() {
+        
     }
 
 }
