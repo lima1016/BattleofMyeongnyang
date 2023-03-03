@@ -16,7 +16,7 @@ public class BattleofMyeongnyangApplication {
     }
 
     private static void monitoringService() {
-        
+
     }
 
 }
