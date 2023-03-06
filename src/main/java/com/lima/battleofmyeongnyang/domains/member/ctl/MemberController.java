@@ -1,5 +1,7 @@
 package com.lima.battleofmyeongnyang.domains.member.ctl;
 
+import com.lima.battleofmyeongnyang.Exception.BattleException;
+import com.lima.battleofmyeongnyang.Exception.MainException;
 import com.lima.battleofmyeongnyang.domains.history.service.LoginHistoryService;
 import com.lima.battleofmyeongnyang.domains.member.LoginMember;
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
@@ -74,7 +76,7 @@ public class MemberController {
   }
 
   @PostMapping("/login/member")
-  public ResponseConfig loginMember(@RequestBody RequestLoginMemberDto request) {
+  public ResponseConfig loginMember(@RequestBody RequestLoginMemberDto request) throws MainException {
     log.info("MemberController.loginMember.request :" + request);
 
     // 로그인 실패는 어떻게 체크를 할 것 인가?
@@ -86,7 +88,8 @@ public class MemberController {
 //      redisTemplate.opsForValue().set(member.getUserNo(), member);
     } else {
       // 실패했을 경우 exception 던지기
-      throw new RuntimeException("아이디나 비밀번호가 틀렸습니다.");
+      // 이거 아닌거같아..........
+      throw new MainException(BattleException.DONT_HAVE_AN_ACCOUNT.getMessage(), new Exception());
     }
     return ResponseConfig.isHelloEmpty();
   }
