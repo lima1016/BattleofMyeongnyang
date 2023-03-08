@@ -1,28 +1,17 @@
 package com.lima.battleofmyeongnyang.domains.member.ctl;
 
-import com.lima.battleofmyeongnyang.Exception.BattleException;
 import com.lima.battleofmyeongnyang.Exception.MainException;
-import com.lima.battleofmyeongnyang.domains.history.service.LoginHistoryService;
-import com.lima.battleofmyeongnyang.domains.member.LoginMember;
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
 import com.lima.battleofmyeongnyang.domains.member.dto.RequestLoginMemberDto;
 import com.lima.battleofmyeongnyang.domains.member.svc.MemberService;
-import com.lima.battleofmyeongnyang.domains.geoip.GeoEnum;
-import com.lima.battleofmyeongnyang.domains.geoip.GeoIPUtility;
 import com.lima.battleofmyeongnyang.response.BattleJsonResponse;
 import com.lima.battleofmyeongnyang.response.ResponseConfig;
 import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.json.simple.JSONObject;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.util.EnumMap;
-import java.util.List;
 import java.util.Objects;
 
 @RestController
@@ -72,7 +61,7 @@ public class MemberController {
     // LIM: 사용자 탈퇴시 정보를 갖고있을지 정책 정하기
     memberService.deleteMember(memberNo);
 
-    return ResponseConfig.isHelloEmpty();
+    return ResponseConfig.isEmpty();
   }
 
   @PostMapping("/login/member")
@@ -88,9 +77,8 @@ public class MemberController {
 
     } else {
       // 실패했을 경우 exception 던지기
-      // 이거 아닌거같아..........
 //      throw new MainException(BattleException.DONT_HAVE_AN_ACCOUNT.getMessage(), new Exception());
     }
-    return ResponseConfig.isHelloEmpty();
+    return ResponseConfig.isEmpty();
   }
 }
