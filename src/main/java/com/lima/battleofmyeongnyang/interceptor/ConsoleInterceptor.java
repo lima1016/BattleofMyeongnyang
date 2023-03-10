@@ -1,16 +1,11 @@
 package com.lima.battleofmyeongnyang.interceptor;
 
-import com.lima.battleofmyeongnyang.domains.member.LoginMember;
-import io.hypersistence.utils.hibernate.type.basic.Inet;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.Objects;
 
 @Slf4j
 @Component
