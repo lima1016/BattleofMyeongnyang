@@ -84,12 +84,12 @@ public class MemberController {
     if ( Objects.nonNull(member)) {
       // 로그인한 user 정보 저장 세션, 쿠키, 캐시?
       memberService.createMemberHistory(member);
-
 //      redisTemplate.opsForValue().set(member.getUserNo(), member);
+
     } else {
       // 실패했을 경우 exception 던지기
       // 이거 아닌거같아..........
-      throw new MainException(BattleException.DONT_HAVE_AN_ACCOUNT.getMessage(), new Exception());
+//      throw new MainException(BattleException.DONT_HAVE_AN_ACCOUNT.getMessage(), new Exception());
     }
     return ResponseConfig.isHelloEmpty();
   }
