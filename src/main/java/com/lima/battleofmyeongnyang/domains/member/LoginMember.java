@@ -19,7 +19,5 @@ public class LoginMember {
   public static LoginMember getInstance() {
     return Singleton.INSTANCE;
   }
-
-  public void setRedisTemplate(String loginId, Inet loginIp) {
-  }
+  
 }
