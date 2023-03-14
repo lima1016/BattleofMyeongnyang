@@ -9,7 +9,6 @@ public class LoginMember {
 
   private String loginId;
   private Inet loginIp;
-  // 로그인 정보 저장용
   private RedisTemplate redisTemplate;
 
   private static class Singleton {
