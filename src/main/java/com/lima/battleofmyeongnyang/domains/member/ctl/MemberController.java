@@ -47,7 +47,7 @@ public class MemberController {
    */
   @GetMapping("/read/my-info")
   public BattleJsonResponse findByMemberId(long userNo) {
-    // user가 로그인 했을때만 정보를 1번 불러오고 redis 에서 user 정보 갖고있다가 변경사항이 있을때 다시 redis로 정보 로드
+    // user가 로그인 했을때만 정보를 1번 불러오고 redis 에서 user 정보 갖고있다가 변경사항이 있으면 redis에 업데이트 후 다시 redis에서 사용
     return BattleJsonResponse.getResponse(memberService.getMemberInfo(userNo));
   }
 
