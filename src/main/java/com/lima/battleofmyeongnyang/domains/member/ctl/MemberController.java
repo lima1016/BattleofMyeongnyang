@@ -36,6 +36,10 @@ public class MemberController {
     return new ResponseConfig();
   }
 
+  /**
+   * 사용자 정보 조회
+   * @param userNo
+   */
   @GetMapping("/read/members")
   public BattleJsonResponse readMembers() {
     return BattleJsonResponse.getResponse(memberService.readMembers());
