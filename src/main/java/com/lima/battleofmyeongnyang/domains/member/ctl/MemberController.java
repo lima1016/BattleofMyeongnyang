@@ -37,8 +37,7 @@ public class MemberController {
   }
 
   /**
-   * 사용자 정보 조회
-   * @param userNo
+   * 사용자 목록 조회
    */
   @GetMapping("/read/members")
   public BattleJsonResponse readMembers() {
