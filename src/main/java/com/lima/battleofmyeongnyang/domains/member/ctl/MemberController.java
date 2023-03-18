@@ -67,6 +67,11 @@ public class MemberController {
     return ResponseConfig.isEmpty();
   }
 
+  /**
+   * 사용자 로그인
+   * @param request
+   * @return
+   */
   @PostMapping("/login/member")
   public ResponseConfig loginMember(@RequestBody RequestLoginMemberDto request) throws MainException {
     log.info("MemberController.loginMember.request :" + request);
