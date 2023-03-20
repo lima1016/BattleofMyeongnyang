@@ -81,7 +81,7 @@ public class MemberController {
     if ( Objects.nonNull(member)) {
       // 로그인한 user 정보 저장 세션 저장
       memberService.createMemberHistory(member);
-//      redisTemplate.opsForValue().set(member.getUserNo(), member);
+      redisTemplate.opsForValue().set(member.getUserNo(), member);
 
     } else {
       // 실패했을 경우 exception 던지기
