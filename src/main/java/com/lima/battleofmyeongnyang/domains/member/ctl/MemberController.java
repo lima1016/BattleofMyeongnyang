@@ -1,5 +1,6 @@
 package com.lima.battleofmyeongnyang.domains.member.ctl;
 
+import com.lima.battleofmyeongnyang.Exception.BattleException;
 import com.lima.battleofmyeongnyang.Exception.MainException;
 import com.lima.battleofmyeongnyang.domains.member.dto.Member;
 import com.lima.battleofmyeongnyang.domains.member.dto.RequestLoginMemberDto;
@@ -85,7 +86,7 @@ public class MemberController {
 
     } else {
       // 실패했을 경우 exception 던지기
-//      throw new MainException(BattleException.DONT_HAVE_AN_ACCOUNT.getMessage(), new Exception());
+      throw new MainException(BattleException.DONT_HAVE_AN_ACCOUNT.getMessage(), new Exception());
     }
     return ResponseConfig.isEmpty();
   }
