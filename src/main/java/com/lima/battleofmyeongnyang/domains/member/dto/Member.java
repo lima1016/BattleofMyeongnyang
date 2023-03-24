@@ -33,4 +33,5 @@ public class Member implements Serializable {
   private String name;
   // password 암호화 해야함
   private String password;
+//  private String isDelete;
 }

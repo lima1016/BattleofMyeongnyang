@@ -16,6 +16,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
   @Transactional
   void deleteMemberByUserNo(long userNo);
 
+//  void updateMemberByUserNo(long userNo);
+
   Member readMemberByUserNo(long userNo);
 
   Member searchMemberByEmailAndPassword(String email, String password);
