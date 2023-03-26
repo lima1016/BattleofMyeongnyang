@@ -16,8 +16,7 @@ public class ConsoleInterceptor implements HandlerInterceptor {
     log.info("ConsoleInterceptor.preHandle().request : " + request.getMethod());
     log.info("ConsoleInterceptor.preHandle().response : " + response.getStatus());
 
-    // login user ip 정보 저장
-    // 유저 정보 확인한 다음에 정보 저장...
+    // 로그인한 유저인지 확인 후 아니면 로그인으로 보내기
 //    if (Objects.nonNull(request.getRemoteAddr())) {
 //      LoginMember.getInstance().setLoginIp(new Inet(request.getRemoteAddr()));
 //    }
