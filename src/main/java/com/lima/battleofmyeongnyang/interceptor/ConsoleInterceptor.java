@@ -17,6 +17,7 @@ public class ConsoleInterceptor implements HandlerInterceptor {
     log.info("ConsoleInterceptor.preHandle().response : " + response.getStatus());
 
     // 로그인한 유저인지 확인 후 아니면 로그인으로 보내기
+    // 로그인했다면 갖고있는 토큰정보와 일치하는지 확인
 //    if (Objects.nonNull(request.getRemoteAddr())) {
 //      LoginMember.getInstance().setLoginIp(new Inet(request.getRemoteAddr()));
 //    }
