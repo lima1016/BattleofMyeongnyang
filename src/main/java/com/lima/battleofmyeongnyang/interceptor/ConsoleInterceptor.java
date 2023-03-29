@@ -1,5 +1,7 @@
 package com.lima.battleofmyeongnyang.interceptor;
 
+import com.lima.battleofmyeongnyang.domains.member.svc.MemberService;
+import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Slf4j
 @Component
 public class ConsoleInterceptor implements HandlerInterceptor {
+
+//  @Resource
+//  MemberService memberService;
+  
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     log.info("ConsoleInterceptor.preHandle().handler : " + handler);
