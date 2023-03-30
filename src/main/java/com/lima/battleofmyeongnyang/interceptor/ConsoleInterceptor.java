@@ -15,7 +15,7 @@ public class ConsoleInterceptor implements HandlerInterceptor {
 
 //  @Resource
 //  MemberService memberService;
-  
+
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
     log.info("ConsoleInterceptor.preHandle().handler : " + handler);

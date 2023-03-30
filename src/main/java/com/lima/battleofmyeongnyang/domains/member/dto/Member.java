@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -34,4 +33,5 @@ public class Member implements Serializable {
   // password 암호화 해야함
   private String password;
 //  private String isDelete;
+//  private String token;
 }
