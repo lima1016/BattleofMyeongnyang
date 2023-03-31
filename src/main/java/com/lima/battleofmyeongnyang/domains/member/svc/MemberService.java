@@ -49,4 +49,8 @@ public class MemberService {
   public void createMemberHistory(Member member) {
     historyService.createLoginHistory(member.getUserNo());
   }
+
+  public void createToken(long userNo) {
+    
+  }
 }
