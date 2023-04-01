@@ -50,7 +50,7 @@ public class MemberService {
     historyService.createLoginHistory(member.getUserNo());
   }
 
-  public void createToken(long userNo) {
-    
+  public void createToken(Member member) {
+//    member.setToken(String.valueOf(Math.random()));
   }
 }
